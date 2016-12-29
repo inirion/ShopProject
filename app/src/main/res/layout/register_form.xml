@@ -91,7 +91,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:id="@+id/BirthDateDialogBtn"
-                    android:onClick="showDatePickerDialog"
                     android:background="#00000000"
                     android:gravity="left|center_vertical|center_horizontal" />
 
@@ -252,10 +251,12 @@
 
             </LinearLayout>
 
-            <Space
+            <Button
+                android:text="Register"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/RegisterBtnGuest" />
 
         </LinearLayout>
     </ScrollView>

@@ -2,15 +2,18 @@ package com.example.grzegorzkokoszka.shopproject;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,7 @@ public class GuestTab02 extends Fragment {
     public GuestTab02() {
 
     }
-
+    private OrientationEventListener myOrientationEventListener;
     private RecyclerView recyclerView;
     private ProductAdapter adapter;
     private SearchView search;
@@ -51,6 +54,25 @@ public class GuestTab02 extends Fragment {
         prevBtn = (Button) rootView.findViewById(R.id.prevBtn);
         nextBtn = (Button) rootView.findViewById(R.id.NextBtn);
         priceSortBtn = (Button) rootView.findViewById(R.id.SortByPriceBtn);
+
+        myOrientationEventListener
+                = new OrientationEventListener(rootView.getContext(), SensorManager.SENSOR_DELAY_NORMAL) {
+            @Override
+            public void onOrientationChanged(int orientation) {
+                if(querySelected){
+                    DisplayData(rootView,getActivity());
+                }
+                Log.d(TAG, "Rotacja : " + orientation);
+                Log.d(TAG, "Query Selected " + querySelected);
+            }
+        };
+        if (myOrientationEventListener.canDetectOrientation()){
+            Toast.makeText(rootView.getContext(), "Can DetectOrientation", Toast.LENGTH_LONG).show();
+            myOrientationEventListener.enable();
+        }
+        else{
+            Toast.makeText(rootView.getContext(), "Can't DetectOrientation", Toast.LENGTH_LONG).show();
+        }
 
         priceSortBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +114,7 @@ public class GuestTab02 extends Fragment {
             }
         });
 
+
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -101,6 +124,7 @@ public class GuestTab02 extends Fragment {
                 Log.d(TAG,"Query Selected " + querySelected);
                 Log.d(TAG,"Value : " + value);
                 DisplayData(rootView,getActivity());
+                search.clearFocus();
                 return false;
             }
 
@@ -113,6 +137,14 @@ public class GuestTab02 extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
+
+
     public void DisplayData(View rootView, Activity activity){
         recyclerView = (RecyclerView) rootView.findViewById(R.id.ProductsView);
         adapter = new ProductAdapter(activity, getData(value));
