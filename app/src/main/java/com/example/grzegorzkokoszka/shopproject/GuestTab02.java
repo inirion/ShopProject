@@ -66,7 +66,7 @@ public class GuestTab02 extends Fragment {
             @Override
             public void onOrientationChanged(int orientation) {
                 if(querySelected){
-                    DisplayData(rootView,getActivity());
+                    //DisplayData(rootView,getActivity());
                 }
                 Log.d(TAG, "Rotacja : " + orientation);
                 Log.d(TAG, "Query Selected " + querySelected);
@@ -223,7 +223,7 @@ public class GuestTab02 extends Fragment {
         float[] prices = {20,10,30};
         int ImageId = R.drawable.trump;
         Random rand = new Random();
-        for(int i = DispalyLimit*pageNum ; i < DispalyLimit+(pageNum*DispalyLimit); i++){
+        for(int i = DispalyLimit*pageNum ; i < DispalyLimit+(pageNum*DispalyLimit) && i < ProductsQuantity; i++){
             int troll = rand.nextInt(2);
             Product product = new Product(titles[troll],descriptions[troll],ImageId,prices[troll]);
             products.add(product);
