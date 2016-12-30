@@ -6,7 +6,9 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.View;
@@ -42,6 +44,7 @@ public class GuestTab02 extends Fragment {
     private static boolean sortAsc = false;
     private static boolean sortDesc = false;
     private static View rootView;
+    private static DisplayMetrics displaymetrics = new DisplayMetrics();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class GuestTab02 extends Fragment {
             rootView.findViewById(R.id.SortByTimeImgBtn).setVisibility(View.INVISIBLE);
             rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
             rootView.findViewById(R.id.NextBtn).setVisibility(View.INVISIBLE);
+            ((Activity)rootView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         }
 
 
