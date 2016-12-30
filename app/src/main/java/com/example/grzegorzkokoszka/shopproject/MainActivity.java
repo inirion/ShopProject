@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         guestImgB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //continue as guest
+                startActivity(new Intent(MainActivity.this,GuestLayoutActivity.class));
             }
         });
 

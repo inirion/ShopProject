@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -36,25 +35,18 @@ public class GuestTab02 extends Fragment {
     private OrientationEventListener myOrientationEventListener;
     private RecyclerView recyclerView;
     private ProductAdapter adapter;
-    private SearchView search;
-    private Button prevBtn;
-    private Button nextBtn;
-    private Button priceSortBtn;
     private static final int DispalyLimit = 10;
     private static int ProductsQuantity = 50;
     private static int value = 0;
     private boolean querySelected = false;
     private static boolean sortAsc = false;
     private static boolean sortDesc = false;
+    private static View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_guest02, container, false);
+        rootView= inflater.inflate(R.layout.fragment_guest02, container, false);
 
-        search = (SearchView) rootView.findViewById(R.id.Search);
-        prevBtn = (Button) rootView.findViewById(R.id.prevBtn);
-        nextBtn = (Button) rootView.findViewById(R.id.NextBtn);
-        priceSortBtn = (Button) rootView.findViewById(R.id.SortByPriceBtn);
 
         myOrientationEventListener
                 = new OrientationEventListener(rootView.getContext(), SensorManager.SENSOR_DELAY_NORMAL) {
@@ -75,7 +67,7 @@ public class GuestTab02 extends Fragment {
             Toast.makeText(rootView.getContext(), "Can't DetectOrientation", Toast.LENGTH_LONG).show();
         }
 
-        priceSortBtn.setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.SortByPriceBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(querySelected == true && ProductsQuantity >0) {
@@ -92,7 +84,24 @@ public class GuestTab02 extends Fragment {
                 }
             }
         });
-        prevBtn.setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.SortByPriceImgBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (querySelected == true && ProductsQuantity > 0) {
+                    if (sortAsc) {
+                        sortAsc = !sortAsc;
+                        sortDesc = true;
+                    } else {
+                        sortAsc = !sortAsc;
+                        sortDesc = false;
+                    }
+                    Log.d(TAG, "Sorted Asc: " + sortAsc);
+                    Log.d(TAG, "Sorted Desc: " + sortDesc);
+                    DisplayData(rootView, getActivity());
+                }
+            }
+        });
+        rootView.findViewById(R.id.prevBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(querySelected == true && value > 0) {
@@ -103,7 +112,7 @@ public class GuestTab02 extends Fragment {
                 Log.d(TAG, "Query Selected " + querySelected);
             }
         });
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.NextBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(querySelected == true && value < ProductsQuantity/DispalyLimit) {
@@ -116,7 +125,7 @@ public class GuestTab02 extends Fragment {
         });
 
 
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        ((SearchView)rootView.findViewById(R.id.Search)).setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if(!query.isEmpty()) {
@@ -125,7 +134,7 @@ public class GuestTab02 extends Fragment {
                 Log.d(TAG,"Query Selected " + querySelected);
                 Log.d(TAG,"Value : " + value);
                 DisplayData(rootView,getActivity());
-                search.clearFocus();
+                (rootView.findViewById(R.id.Search)).clearFocus();
                 return false;
             }
 
