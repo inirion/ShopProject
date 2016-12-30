@@ -35,8 +35,8 @@ public class GuestTab02 extends Fragment {
     private OrientationEventListener myOrientationEventListener;
     private RecyclerView recyclerView;
     private ProductAdapter adapter;
-    private static final int DispalyLimit = 10;
-    private static int ProductsQuantity = 50;
+    private static final int DispalyLimit = 5;
+    private static int ProductsQuantity = 21;
     private static int value = 0;
     private boolean querySelected = false;
     private static boolean sortAsc = false;
@@ -46,6 +46,15 @@ public class GuestTab02 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView= inflater.inflate(R.layout.fragment_guest02, container, false);
+        if(!querySelected) {
+            Toast.makeText(rootView.getContext(), "Disable Buttons", Toast.LENGTH_LONG).show();
+            rootView.findViewById(R.id.SortByPriceBtn).setVisibility(View.INVISIBLE);
+            rootView.findViewById(R.id.SortByPriceImgBtn).setVisibility(View.INVISIBLE);
+            rootView.findViewById(R.id.SortByTimeBtn).setVisibility(View.INVISIBLE);
+            rootView.findViewById(R.id.SortByTimeImgBtn).setVisibility(View.INVISIBLE);
+            rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
+            rootView.findViewById(R.id.NextBtn).setVisibility(View.INVISIBLE);
+        }
 
 
         myOrientationEventListener
@@ -106,6 +115,13 @@ public class GuestTab02 extends Fragment {
             public void onClick(View v) {
                 if(querySelected == true && value > 0) {
                     value--;
+                    if(value == 0){
+                        rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
+                        rootView.findViewById(R.id.NextBtn).setVisibility(View.VISIBLE);
+                    }else{
+                        rootView.findViewById(R.id.prevBtn).setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.NextBtn).setVisibility(View.VISIBLE);
+                    }
                     DisplayData(rootView,getActivity());
                 }
                 Log.d(TAG, "Value : " + value);
@@ -117,6 +133,14 @@ public class GuestTab02 extends Fragment {
             public void onClick(View v) {
                 if(querySelected == true && value < ProductsQuantity/DispalyLimit) {
                     value++;
+                    if(value >= ProductsQuantity/DispalyLimit) {
+                        rootView.findViewById(R.id.NextBtn).setVisibility(View.INVISIBLE);
+                        rootView.findViewById(R.id.prevBtn).setVisibility(View.VISIBLE);
+                    }else{
+                        rootView.findViewById(R.id.prevBtn).setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.NextBtn).setVisibility(View.VISIBLE);
+                    }
+
                     DisplayData(rootView,getActivity());
                 }
                 Log.d(TAG, "Value : " + value);
@@ -130,7 +154,31 @@ public class GuestTab02 extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 if(!query.isEmpty()) {
                     querySelected = true;
-                }else querySelected = false;
+                    Toast.makeText(rootView.getContext(), "Enable Buttons", Toast.LENGTH_LONG).show();
+                    if(rootView.findViewById(R.id.SortByPriceBtn).getVisibility() == View.INVISIBLE) {
+                        rootView.findViewById(R.id.SortByPriceBtn).setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.SortByPriceImgBtn).setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.SortByTimeBtn).setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.SortByTimeImgBtn).setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.prevBtn).setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.NextBtn).setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    querySelected = false;
+                    if(rootView.findViewById(R.id.SortByPriceBtn).getVisibility() == View.VISIBLE) {
+                        rootView.findViewById(R.id.SortByPriceBtn).setVisibility(View.INVISIBLE);
+                        rootView.findViewById(R.id.SortByPriceImgBtn).setVisibility(View.INVISIBLE);
+                        rootView.findViewById(R.id.SortByTimeBtn).setVisibility(View.INVISIBLE);
+                        rootView.findViewById(R.id.SortByTimeImgBtn).setVisibility(View.INVISIBLE);
+                        rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
+                        rootView.findViewById(R.id.NextBtn).setVisibility(View.INVISIBLE);
+                    }
+                }
+                if(value == 0){
+                    rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
+                }else{
+                    rootView.findViewById(R.id.prevBtn).setVisibility(View.VISIBLE);
+                }
                 Log.d(TAG,"Query Selected " + querySelected);
                 Log.d(TAG,"Value : " + value);
                 DisplayData(rootView,getActivity());
