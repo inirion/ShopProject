@@ -2,19 +2,15 @@ package com.example.grzegorzkokoszka.shopproject;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Grzegorz Kokoszka on 2016-12-28.
@@ -31,7 +27,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.product_row,parent,false);
+        View view = inflater.inflate(R.layout.product_row_guest,parent,false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }

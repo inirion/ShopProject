@@ -8,18 +8,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.grzegorzkokoszka.shopproject.GuestLayoutActivity$PlaceholderFragment">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="One"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_below="@+id/section_label"
-        android:layout_toRightOf="@+id/section_label"
-        android:layout_toEndOf="@+id/section_label"
-        android:layout_marginLeft="45dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="162dp" />
-
 </RelativeLayout>

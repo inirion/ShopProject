@@ -86,41 +86,46 @@
                     android:id="@+id/loginButton"
                     android:layout_marginTop="20dp"
                     android:layout_weight="0.96"
-                    android:layout_height="75dp"
-                    android:background="#00000000"
-                    style="@android:style/Widget.Material.Light.Button.Borderless" />
+                    android:layout_height="75dp" />
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="228dp"
-                android:layout_weight="0.40">
 
-                <Button
-                    android:text="Forgot password ?"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/passwordSendRedirectButton"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:textColor="?android:attr/colorActivatedHighlight"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <Button
-                    android:text="Sign up now"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/registerRedirectButton"
-                    android:background="#00000000"
-                    android:textColor="?android:attr/colorActivatedHighlight"
-                    android:layout_below="@+id/passwordSendRedirectButton"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PasswordRegisterConfirmForm"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/LoginViewButtonsRelative">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/LoginViewButtonsLinear">
+
+            <Button
+                android:text="Forgot Password ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordSendRedirectButton"
+                android:layout_weight="1" />
+            <Button
+                android:text="Sign Up Now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/registerRedirectButton"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import  android.app.FragmentManager;
 
 public class RegisterForm extends Activity {
     private static Button BirthDay;
+    private static Button Back;
     private static View rootView;
     private static final String TAG = MainActivity.class.getSimpleName();
     @Override
@@ -32,9 +34,14 @@ public class RegisterForm extends Activity {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
-
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(fragmentManager, "datePicker");
+            }
+        });
+        rootView.findViewById(R.id.CancelBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterForm.this,MainActivity.class));
             }
         });
     }

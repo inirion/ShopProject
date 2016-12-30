@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Grzegorz Kokoszka on 2016-12-28.
@@ -39,8 +40,8 @@ public class GuestTab02 extends Fragment {
     private Button prevBtn;
     private Button nextBtn;
     private Button priceSortBtn;
-    private static final int DispalyLimit = 2;
-    private static int ProductsQuantity = 3;
+    private static final int DispalyLimit = 10;
+    private static int ProductsQuantity = 50;
     private static int value = 0;
     private boolean querySelected = false;
     private static boolean sortAsc = false;
@@ -160,8 +161,10 @@ public class GuestTab02 extends Fragment {
                 "Perulka trampa, jedyna w swoim rodzaju"};
         float[] prices = {20,10,30};
         int ImageId = R.drawable.trump;
-        for(int i = DispalyLimit*pageNum ; i < DispalyLimit+(pageNum*DispalyLimit) && i < titles.length; i++){
-            Product product = new Product(titles[i],descriptions[i],ImageId,prices[i]);
+        Random rand = new Random();
+        for(int i = DispalyLimit*pageNum ; i < DispalyLimit+(pageNum*DispalyLimit); i++){
+            int troll = rand.nextInt(2);
+            Product product = new Product(titles[troll],descriptions[troll],ImageId,prices[troll]);
             products.add(product);
         }
         return products;
