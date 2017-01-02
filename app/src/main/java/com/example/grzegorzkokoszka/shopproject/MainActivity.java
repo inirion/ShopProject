@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
+    private User user = new User();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +28,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText loginT = (EditText) findViewById(R.id.loginText);
                 EditText passwordT = (EditText) findViewById(R.id.passwordText);
-                if(loginT.getText().toString().equals("admin") && passwordT.getText().toString().equals("admin")){
+                if(loginT.getText().toString().equals("") && passwordT.getText().toString().equals("")){
                     //login as user
                     Log.d(TAG,"Logged");
+                    User.getPerson().setName("Kokoszka");
+                    User.setIsLogged(true);
+                    Intent intent = new Intent(MainActivity.this,LayoutActivity.class);
+                    startActivity(intent);
                 }else{
                     //warning with info
+                    User.getPerson().setName("Alojzy");
+                    User.setIsLogged(false);
+                    Intent intent = new Intent(MainActivity.this,LayoutActivity.class);
+                    startActivity(intent);
                     Log.d(TAG,"Wrong Input");
                 }
             }
@@ -56,14 +65,16 @@ public class MainActivity extends AppCompatActivity {
         guestB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,GuestLayoutActivity.class);
+                //User user = new User("Grzegorz","Kokoszka",false);
+                Intent intent = new Intent(MainActivity.this,LayoutActivity.class);
+                //intent.putExtra("user",user);
                 startActivity(intent);
             }
         });
         guestImgB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,GuestLayoutActivity.class));
+                startActivity(new Intent(MainActivity.this,LayoutActivity.class));
             }
         });
 

@@ -101,6 +101,7 @@
         android:layout_below="@+id/PasswordRegisterConfirmForm"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
         android:id="@+id/LoginViewButtonsRelative">
 
         <LinearLayout
@@ -116,12 +117,14 @@
                 android:text="Forgot Password ?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:id="@+id/passwordSendRedirectButton"
                 android:layout_weight="1" />
             <Button
                 android:text="Sign Up Now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:id="@+id/registerRedirectButton"
                 android:layout_weight="1" />
 

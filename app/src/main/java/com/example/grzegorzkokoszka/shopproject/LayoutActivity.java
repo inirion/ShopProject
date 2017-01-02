@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class GuestLayoutActivity extends Activity {
+public class LayoutActivity extends Activity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -34,15 +34,13 @@ public class GuestLayoutActivity extends Activity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+   // User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_layout);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+        //Create adapter
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
-
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -74,7 +72,6 @@ public class GuestLayoutActivity extends Activity {
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -83,11 +80,20 @@ public class GuestLayoutActivity extends Activity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return GuestTab01.newInstance();
+                    if(User.isLogged())
+                        return UserTab01.newInstance();
+                    else
+                        return GuestTab01.newInstance();
                 case 1:
-                    return GuestTab02.newInstance();
+                    if(User.isLogged())
+                        return UserTab02.newInstance();
+                    else
+                        return GuestTab02.newInstance();
                 case 2:
-                    return GuestTab03.newInstance();
+                    if(User.isLogged())
+                        return UserTab03.newInstance();
+                    else
+                        return GuestTab03.newInstance();
             }
             return null;
         }
