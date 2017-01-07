@@ -1,6 +1,7 @@
 package com.example.grzegorzkokoszka.shopproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        Product currentObj = productList.get(position);
+        final Product currentObj = productList.get(position);
         holder.name.setText(currentObj.getName());
         holder.description.setText(currentObj.getDescription());
         holder.image.setImageResource(currentObj.getPicture());
@@ -43,10 +44,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(),"Item Clicked at position" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(inflater.getContext(),ProductDetails.class);
+                intent.putExtra("name",currentObj.getName());
+                intent.putExtra("description",currentObj.getDescription());
+                intent.putExtra("image",currentObj.getPicture());
+                intent.putExtra("price",Float.toString(currentObj.getPrice()));
+                inflater.getContext().startActivity(intent);
             }
         });
-
-
     }
 
     @Override

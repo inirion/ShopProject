@@ -2,6 +2,8 @@ package com.example.grzegorzkokoszka.shopproject;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,7 +41,6 @@ public class GuestTab02 extends Fragment {
     private static final int DispalyLimit = 5;
     private static int ProductsQuantity = 21;
     private static int value = 0;
-    private boolean querySelected = false;
     private static boolean sortAsc = false;
     private static boolean sortDesc = false;
     private static View rootView;
@@ -48,7 +49,7 @@ public class GuestTab02 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView= inflater.inflate(R.layout.fragment_guest02, container, false);
-        if(!querySelected) {
+        if(!User.isQuerySelected()) {
             Toast.makeText(rootView.getContext(), "Disable Buttons", Toast.LENGTH_LONG).show();
             rootView.findViewById(R.id.SortByPriceBtn).setVisibility(View.INVISIBLE);
             rootView.findViewById(R.id.SortByPriceImgBtn).setVisibility(View.INVISIBLE);
@@ -57,18 +58,26 @@ public class GuestTab02 extends Fragment {
             rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
             rootView.findViewById(R.id.NextBtn).setVisibility(View.INVISIBLE);
             ((Activity)rootView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        }else{
+            DisplayData(rootView,getActivity());
+            if(value == 0) {
+                rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
+                rootView.findViewById(R.id.NextBtn).setVisibility(View.VISIBLE);
+            }
+            if(value >= ProductsQuantity/DispalyLimit) {
+                rootView.findViewById(R.id.NextBtn).setVisibility(View.INVISIBLE);
+                rootView.findViewById(R.id.prevBtn).setVisibility(View.VISIBLE);
+            }
         }
-
-
         myOrientationEventListener
                 = new OrientationEventListener(rootView.getContext(), SensorManager.SENSOR_DELAY_NORMAL) {
             @Override
             public void onOrientationChanged(int orientation) {
-                if(querySelected){
+                if(User.isQuerySelected()){
                     //DisplayData(rootView,getActivity());
                 }
                 Log.d(TAG, "Rotacja : " + orientation);
-                Log.d(TAG, "Query Selected " + querySelected);
+                Log.d(TAG, "Query Selected " + User.isQuerySelected());
             }
         };
         if (myOrientationEventListener.canDetectOrientation()){
@@ -78,11 +87,10 @@ public class GuestTab02 extends Fragment {
         else{
             Toast.makeText(rootView.getContext(), "Can't DetectOrientation", Toast.LENGTH_LONG).show();
         }
-
         rootView.findViewById(R.id.SortByPriceBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(querySelected == true && ProductsQuantity >0) {
+                if(User.isQuerySelected() == true && ProductsQuantity >0) {
                     if (sortAsc) {
                         sortAsc = !sortAsc;
                         sortDesc = true;
@@ -99,7 +107,7 @@ public class GuestTab02 extends Fragment {
         rootView.findViewById(R.id.SortByPriceImgBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (querySelected == true && ProductsQuantity > 0) {
+                if (User.isQuerySelected() == true && ProductsQuantity > 0) {
                     if (sortAsc) {
                         sortAsc = !sortAsc;
                         sortDesc = true;
@@ -116,7 +124,7 @@ public class GuestTab02 extends Fragment {
         rootView.findViewById(R.id.prevBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(querySelected == true && value > 0) {
+                if(User.isQuerySelected() == true && value > 0) {
                     value--;
                     if(value == 0){
                         rootView.findViewById(R.id.prevBtn).setVisibility(View.INVISIBLE);
@@ -128,13 +136,13 @@ public class GuestTab02 extends Fragment {
                     DisplayData(rootView,getActivity());
                 }
                 Log.d(TAG, "Value : " + value);
-                Log.d(TAG, "Query Selected " + querySelected);
+                Log.d(TAG, "Query Selected " + User.isQuerySelected());
             }
         });
         rootView.findViewById(R.id.NextBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(querySelected == true && value < ProductsQuantity/DispalyLimit) {
+                if(User.isQuerySelected() == true && value < ProductsQuantity/DispalyLimit) {
                     value++;
                     if(value >= ProductsQuantity/DispalyLimit) {
                         rootView.findViewById(R.id.NextBtn).setVisibility(View.INVISIBLE);
@@ -147,16 +155,14 @@ public class GuestTab02 extends Fragment {
                     DisplayData(rootView,getActivity());
                 }
                 Log.d(TAG, "Value : " + value);
-                Log.d(TAG, "Query Selected " + querySelected);
+                Log.d(TAG, "Query Selected " + User.isQuerySelected());
             }
         });
-
-
         ((SearchView)rootView.findViewById(R.id.Search)).setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if(!query.isEmpty()) {
-                    querySelected = true;
+                    User.setQuerySelected(true);
                     Toast.makeText(rootView.getContext(), "Enable Buttons", Toast.LENGTH_LONG).show();
                     if(rootView.findViewById(R.id.SortByPriceBtn).getVisibility() == View.INVISIBLE) {
                         rootView.findViewById(R.id.SortByPriceBtn).setVisibility(View.VISIBLE);
@@ -167,7 +173,7 @@ public class GuestTab02 extends Fragment {
                         rootView.findViewById(R.id.NextBtn).setVisibility(View.VISIBLE);
                     }
                 }else{
-                    querySelected = false;
+                    User.setQuerySelected(false);
                     if(rootView.findViewById(R.id.SortByPriceBtn).getVisibility() == View.VISIBLE) {
                         rootView.findViewById(R.id.SortByPriceBtn).setVisibility(View.INVISIBLE);
                         rootView.findViewById(R.id.SortByPriceImgBtn).setVisibility(View.INVISIBLE);
@@ -182,7 +188,7 @@ public class GuestTab02 extends Fragment {
                 }else{
                     rootView.findViewById(R.id.prevBtn).setVisibility(View.VISIBLE);
                 }
-                Log.d(TAG,"Query Selected " + querySelected);
+                Log.d(TAG,"Query Selected " + User.isQuerySelected());
                 Log.d(TAG,"Value : " + value);
                 DisplayData(rootView,getActivity());
                 (rootView.findViewById(R.id.Search)).clearFocus();
@@ -223,8 +229,7 @@ public class GuestTab02 extends Fragment {
         int ImageId = R.drawable.trump;
         Random rand = new Random();
         for(int i = DispalyLimit*pageNum ; i < DispalyLimit+(pageNum*DispalyLimit) && i < ProductsQuantity; i++){
-            int troll = rand.nextInt(2);
-            Product product = new Product(titles[troll],descriptions[troll],ImageId,prices[troll]);
+            Product product = new Product(titles[i%3],descriptions[i%3],ImageId,prices[i%3]);
             products.add(product);
         }
         return products;

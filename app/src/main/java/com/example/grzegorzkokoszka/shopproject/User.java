@@ -16,6 +16,16 @@ public class User {
     private static int Id;
     private static boolean isLogged;
 
+    public static boolean isQuerySelected() {
+        return querySelected;
+    }
+
+    public static void setQuerySelected(boolean querySelected) {
+        User.querySelected = querySelected;
+    }
+
+    private static boolean querySelected;
+
     public User(String Name,String Surname,boolean isLogged){
         person = new Person(Name,Surname);
         this.isLogged = isLogged;

@@ -84,10 +84,4 @@ public class GuestTab03 extends Fragment {
         }
 
     }
-
-
-    public void showDatePickerDialog(View v) {
-
-
-    }
 }
