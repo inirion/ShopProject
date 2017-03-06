@@ -33,7 +33,7 @@
                 android:id="@+id/TopButtons">
 
                 <Button
-                    android:text="Continue as Guest"
+                    android:text="Wejdź jako gość"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnGuest"
@@ -71,7 +71,7 @@
                     android:id="@+id/loginText" />
 
                 <EditText
-                    android:hint="Password"
+                    android:hint="Hasło"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                     android:layout_marginTop="20dp" />
 
                 <Button
-                    android:text="Log in"
+                    android:text="Zaloguj"
                     android:layout_width="match_parent"
                     android:id="@+id/loginButton"
                     android:layout_marginTop="20dp"
@@ -98,7 +98,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PasswordRegisterConfirmForm"
+        android:layout_below="@+id/PhoneRFL"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
@@ -114,14 +114,7 @@
             android:id="@+id/LoginViewButtonsLinear">
 
             <Button
-                android:text="Forgot Password ?"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:id="@+id/passwordSendRedirectButton"
-                android:layout_weight="1" />
-            <Button
-                android:text="Sign Up Now"
+                android:text="Rejestracja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

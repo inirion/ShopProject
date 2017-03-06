@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -34,7 +35,11 @@ public class LayoutActivity extends Activity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-   // User user;
+   @Override
+   public void onBackPressed() {
+
+   }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +50,8 @@ public class LayoutActivity extends Activity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         //set middle tab default
-        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(User.getCurrentPageFragemnt());
+        User.setCurrentPageFragemnt(1);
     }
 
 
@@ -80,14 +86,8 @@ public class LayoutActivity extends Activity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    if(User.isLogged())
-                        return UserTab01.newInstance();
-                    else
                         return GuestTab01.newInstance();
                 case 1:
-                    if(User.isLogged())
-                        return UserTab02.newInstance();
-                    else
                         return GuestTab02.newInstance();
                 case 2:
                     if(User.isLogged())

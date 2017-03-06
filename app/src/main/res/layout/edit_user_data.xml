@@ -9,10 +9,12 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:focusableInTouchMode="true">
 
+
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:id="@+id/scrollLayoutRF">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/RegisterButtons"
+        android:id="@+id/ScrollVierRegister">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,103 +24,25 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                android:layout_height="match_parent">
 
                 <EditText
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/FirstNameRF"
+                    android:id="@+id/HouseNumberUF"
                     android:layout_weight="1"
-                    android:hint="Imie..."
-                    android:layout_width="200dp"
-                    android:inputType="text" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/FirstNameRF"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/LastNameRFF">
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/LastNameRF"
-                    android:layout_weight="1"
-                    android:hint="Nazwisko..." />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/LastNameRF"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/EmailRFL"
-                android:layout_weight="1">
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/EmailRF"
-                    android:layout_weight="1"
-                    android:hint="Email..."
-                    android:inputType="textEmailAddress" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/EmailRF"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/PasswordRFL"
-                android:layout_weight="1">
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/PasswordRF"
-                    android:layout_weight="1"
-                    android:hint="Hasło..."
-                    android:inputType="textVisiblePassword" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/PasswordRF"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/BankAccountRFL"
-                android:layout_weight="1">
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/BankAccountRF"
-                    android:layout_weight="1"
-                    android:hint="Numer konta bankowego..."
+                    android:hint="Numer domu..."
                     android:inputType="number" />
 
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/PostalCodeUF"
+                    android:layout_weight="1"
+                    android:hint="Kod pocztowy..."
+                    android:inputType="number" />
             </LinearLayout>
 
             <LinearLayout
@@ -128,17 +52,36 @@
                 android:id="@+id/PhoneRFL"
                 android:layout_below="@+id/StreetRFL"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_weight="1">
+                android:layout_alignParentStart="true">
 
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/PhoneNumberRF"
+                    android:id="@+id/PhoneNumberUF"
                     android:layout_weight="1"
                     android:hint="Numer telefonu..."
                     android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/CityRFL"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/StreetRFL">
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/StreetUF"
+                    android:layout_weight="1"
+                    android:hint="Nazwa ulicy..." />
 
             </LinearLayout>
 
@@ -156,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:ems="10"
-                    android:id="@+id/CityNameRF"
+                    android:id="@+id/CityNameUF"
                     android:layout_weight="1"
                     android:hint="Nazwa miasta..." />
 
@@ -166,117 +109,127 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/CityRFL"
+                android:layout_below="@+id/PasswordRF"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:id="@+id/StreetRFL"
-                android:layout_weight="1">
+                android:id="@+id/BankAccountRFL">
 
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
                     android:ems="10"
-                    android:id="@+id/Street"
+                    android:id="@+id/BankAccountUF"
                     android:layout_weight="1"
-                    android:hint="Nazwa ulicy..." />
+                    android:hint="Numer konta bankowego..."
+                    android:inputType="number" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_below="@+id/EmailRF"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/PasswordRFL">
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/HouseNumberRF"
+                    android:id="@+id/PasswordUF"
                     android:layout_weight="1"
-                    android:hint="Numer domu..."
-                    android:inputType="number" />
+                    android:hint="Hasło..."
+                    android:inputType="textVisiblePassword" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/LastNameRF"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/EmailRFL">
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/PostalCodeRF"
+                    android:id="@+id/EmailUF"
                     android:layout_weight="1"
-                    android:hint="Kod pocztowy..."
-                    android:inputType="number" />
+                    android:hint="Email..."
+                    android:inputType="textEmailAddress" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/FirstNameRF"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/LastNameRFF">
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/LastNameUF"
+                    android:layout_weight="1"
+                    android:hint="Imię..." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/FirstNameUF"
+                    android:layout_weight="1"
+                    android:hint="Nazwisko..."
+                    android:layout_width="200dp"
+                    android:inputType="text" />
+
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/RegisterButtonsRelative"
-        android:layout_below="@+id/scrollLayoutRF"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/LoginRFLayout"
-            android:layout_above="@+id/RegisterBtnGuest"
-            >
-
-            <Button
-                android:text="Zaloguj"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:visibility="invisible"
-                android:id="@+id/LoginBtnGuest"
-                android:layout_weight="1" />
-        </LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/RegisterButtons">
 
         <Button
-            android:text="Zarejestruj"
-            android:layout_width="match_parent"
+            android:text="Anuluj"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:visibility="invisible"
-            android:id="@+id/RegisterBtnGuest" />
+            android:id="@+id/CancelBtnUF"
+            android:layout_weight="1" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+        <Button
+            android:text="Aktualizuj"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/RegisterButtons">
-
-            <Button
-                android:text="Anuluj"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/CancelBtn"
-                android:layout_weight="1" />
-
-            <Button
-                android:text="Zarejestruj"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RegisterBtn"
-                android:layout_weight="1"
-                android:elevation="1dp" />
-
-
-
-        </LinearLayout>
-    </RelativeLayout>
+            android:id="@+id/UpdateBtn"
+            android:layout_weight="1"
+            android:elevation="1dp" />
+    </LinearLayout>
 
 </RelativeLayout>
